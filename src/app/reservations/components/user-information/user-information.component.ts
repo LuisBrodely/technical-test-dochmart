@@ -20,13 +20,10 @@ export class UserInformationComponent {
 
   get currentUser(): ReservationBody {
     const user = this.userForm.value as ReservationBody
-    user.dayId = '65c86f5e164139afe929b1d2'
-    user.hourId = '65c86f5e164139afe929b1d5'
     return user
   }
 
   onSubmit(): void {
-
     if (this.userForm.invalid) return
 
     this.reservationsService.addReservation(this.currentUser)

@@ -23,4 +23,7 @@ export class CalendarComponent implements OnInit {
     const day = dateObj.getUTCDate();
     return day
   }
+
+  selectDay(dayId: string) {
+  }
 }

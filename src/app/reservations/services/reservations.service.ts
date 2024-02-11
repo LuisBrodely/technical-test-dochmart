@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AvailableHour, Reservation, ReservationBody, ReservationsResponse } from '../interfaces/reservations.interfaces';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ReservationsService {
-
   private apiUrl = 'http://localhost:3000/api';
+
+  private _selectedDay: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -21,5 +22,7 @@ export class ReservationsService {
   addReservation(reservation: ReservationBody): Observable<Reservation> {
     return this.http.post<Reservation>(`${ this.apiUrl }/reservations/`, reservation)
   }
+
+  
 
 }
