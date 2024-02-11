@@ -25,5 +25,6 @@ export class CalendarComponent implements OnInit {
   }
 
   selectDay(dayId: string) {
+    this.reservationsService.daySelected.emit(dayId)
   }
 }

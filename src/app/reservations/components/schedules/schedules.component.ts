@@ -8,11 +8,30 @@ import { Subscription } from 'rxjs';
   templateUrl: './schedules.component.html',
   styleUrls: ['./schedules.component.css']
 })
-export class SchedulesComponent{
+export class SchedulesComponent implements OnInit {
 
-  public availableHour: AvailableHour[] = [];
+  public availableHours: AvailableHour[] = [];
 
   constructor(private reservationsService: ReservationsService) {}
 
-  
+  ngOnInit(): void {
+    this.reservationsService.daySelected.subscribe(dayId => {
+      console.log(dayId)
+      this.reservationsService.getHoursForDayId(dayId)
+        .subscribe(availableHours => {
+          this.availableHours = availableHours
+          console.log({ availableHours })
+        })
+    })
+  }
+
+  convertTo12HourFormat(hour24: number): string {
+    if (hour24 < 1 || hour24 > 24) {
+      return "Invalid hour";
+    }
+    const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
+    const period = hour24 < 12 ? "AM" : "PM";
+    return hour12 + ":00 " + period;
+  }
+
 }

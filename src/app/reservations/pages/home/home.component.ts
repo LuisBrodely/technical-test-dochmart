@@ -7,9 +7,5 @@ import { ReservationsService } from '../../services/reservations.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  selectedDayId: string = '';
-
-  handleDaySelected(dayId: string): void {
-    this.selectedDayId = dayId;
-  }
+  
 }

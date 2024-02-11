@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AvailableHour, Reservation, ReservationBody, ReservationsResponse } from '../interfaces/reservations.interfaces';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ReservationsService {
+
   private apiUrl = 'http://localhost:3000/api';
 
-  private _selectedDay: string = '';
+  @Output() daySelected: EventEmitter<string> = new EventEmitter()
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +24,5 @@ export class ReservationsService {
     return this.http.post<Reservation>(`${ this.apiUrl }/reservations/`, reservation)
   }
 
-  
 
 }

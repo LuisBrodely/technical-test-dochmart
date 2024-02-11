@@ -1,3 +1,9 @@
 <schedules-hour></schedules-hour>
 
+<ul>
+  <li *ngFor="let reservation of availableHours">
+    Time: {{ convertTo12HourFormat(reservation.time) }} | Capacity: {{ reservation.capacity }}
+  </li>
+</ul>
+
 <schedules-user-information></schedules-user-information>

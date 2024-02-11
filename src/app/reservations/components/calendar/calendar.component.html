@@ -1,3 +1,3 @@
-<div *ngFor="let day of days;" (click)="selectDay(day._id)">
-  <p>{{ getDayOfMonth(day.date) }}</p>
+<div *ngFor="let day of days;" >
+  <p (click)="selectDay(day._id)" style="cursor: pointer;">{{ getDayOfMonth(day.date) }}</p>
 </div>
