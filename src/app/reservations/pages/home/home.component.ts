@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ReservationsService } from '../../services/reservations.service';
 
 @Component({
   selector: 'reservations-home-page',

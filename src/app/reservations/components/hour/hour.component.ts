@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { AvailableHour } from '../../interfaces/reservations.interfaces';
 
 @Component({
   selector: 'schedules-hour',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class HourComponent {
 
+  
 }

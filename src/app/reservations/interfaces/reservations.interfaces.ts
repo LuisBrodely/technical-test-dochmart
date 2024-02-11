@@ -1,4 +1,4 @@
-export interface Welcome {
+export interface ReservationsResponse {
   _id:            string;
   date:           Date;
   availableHours: AvailableHour[];
@@ -18,4 +18,12 @@ export interface Reservation {
   email: string;
   phone: string;
   __v:   number;
+}
+
+export interface ReservationBody {
+  dayId: string;
+  hourId: string;
+  name:  string;
+  email: string;
+  phone: string;
 }

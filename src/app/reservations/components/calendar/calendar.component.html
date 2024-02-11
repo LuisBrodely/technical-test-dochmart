@@ -1,1 +1,3 @@
-<p>calendar works!</p>
+<div *ngFor="let day of days;" >
+  <p>{{ getDayOfMonth(day.date) }}</p>
+</div>
