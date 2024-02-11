@@ -1,9 +1,14 @@
-<schedules-hour></schedules-hour>
+<h3 *ngIf="daySelected">Horarios del {{ daySelected }} de septiembre del 2024</h3>
 
 <ul>
   <li *ngFor="let reservation of availableHours">
-    Time: {{ convertTo12HourFormat(reservation.time) }} | Capacity: {{ reservation.capacity }}
+    <button (click)="selectHour(reservation._id, convertTo12HourFormat(reservation.time))" class="p-2 bg-blue-200 mb-2">
+      Time: {{ convertTo12HourFormat(reservation.time) }}
+    </button>
+    <p *ngFor="let userInfo of reservation.reservations">
+      {{ userInfo.name }} - {{ userInfo.email }} - {{ userInfo.phone }}
+    </p>
   </li>
 </ul>
 
-<schedules-user-information></schedules-user-information>
+<schedules-user-form></schedules-user-form>

@@ -1,14 +1,16 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AvailableHour, Reservation, ReservationBody, ReservationsResponse } from '../interfaces/reservations.interfaces';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { AddReservation, AvailableHour, DaySelected, HourSelected, Reservation, ReservationBody, ReservationsResponse } from '../interfaces/reservations.interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ReservationsService {
 
   private apiUrl = 'http://localhost:3000/api';
 
-  @Output() daySelected: EventEmitter<string> = new EventEmitter()
+  @Output() daySelected: EventEmitter<DaySelected> = new EventEmitter()
+  @Output() hourSelected: EventEmitter<HourSelected> = new EventEmitter()
+  @Output() reservationAdded: EventEmitter<AddReservation> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 

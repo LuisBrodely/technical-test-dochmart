@@ -15,7 +15,14 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.reservationsService.getAllDays()
-      .subscribe(days => this.days = days)
+      .subscribe(days => {
+        this.days = days
+        console.log({days})
+      })
+    this.reservationsService.reservationAdded.subscribe(() => {
+      this.loadDays();
+    });
+    
   }
 
   getDayOfMonth(date: Date): number {
@@ -24,7 +31,19 @@ export class CalendarComponent implements OnInit {
     return day
   }
 
-  selectDay(dayId: string) {
-    this.reservationsService.daySelected.emit(dayId)
+  selectDay(dayId: string, dayNumber: number) {
+    this.reservationsService.daySelected.emit({ dayId, dayNumber })
+  }
+
+  isFullyBooked(dayIndex: number): boolean {
+    return this.days[dayIndex].availableHours.every(hour => hour.reservations.length > 0);
+  }
+
+  loadDays(): void {
+    this.reservationsService.getAllDays()
+      .subscribe(days => {
+        this.days = days;
+        console.log({days});
+      });
   }
 }

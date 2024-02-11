@@ -27,3 +27,18 @@ export interface ReservationBody {
   email: string;
   phone: string;
 }
+
+export interface DaySelected {
+  dayId: string;
+  dayNumber: number;
+}
+
+export interface HourSelected {
+  hourId: string;
+  hour: string;
+}
+
+export interface AddReservation {
+  userReservation: Reservation;
+   hourId: string;
+}
