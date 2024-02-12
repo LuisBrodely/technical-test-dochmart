@@ -19,11 +19,11 @@ export class UserReservationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.reservationsService.reservationAdded.subscribe(({ userReservation }) => {
-      if (userReservation.name === this.name) {
-        this.searchReservations(userReservation.name)
+      if (this.buttonPressed && userReservation.name === this.name) {
+        this.searchReservations(userReservation.name);
       } else {
+        this.buttonPressed = false;
         this.allDays = []
-        this.buttonPressed  = false;
       }
     });
   }
