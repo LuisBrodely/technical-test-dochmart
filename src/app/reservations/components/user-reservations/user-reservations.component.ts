@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ReservationsResponse } from '../../interfaces/reservations.interfaces';
+import { PersoAvailableHour, PersoReservationsResponse, ReservationsResponse } from '../../interfaces/reservations.interfaces';
 import { ReservationsService } from '../../services/reservations.service';
 import { convertTo12HourFormat, getDayOfMonth } from '../../util/util';
 
@@ -11,8 +11,9 @@ import { convertTo12HourFormat, getDayOfMonth } from '../../util/util';
 export class UserReservationsComponent implements OnInit {
 
   @Input() public name: string = '';
+  @Input() public email: string = '';
 
-  allDays: ReservationsResponse[] = [];
+  allDays: PersoReservationsResponse[] = [];
   buttonPressed : boolean = false;
 
   constructor(private reservationsService: ReservationsService) {}
@@ -20,7 +21,7 @@ export class UserReservationsComponent implements OnInit {
   ngOnInit(): void {
     this.reservationsService.reservationAdded.subscribe(({ userReservation }) => {
       if (this.buttonPressed && userReservation.name === this.name) {
-        this.searchReservations(userReservation.name);
+        this.searchReservations(userReservation.name, userReservation.email);
       } else {
         this.buttonPressed = false;
         this.allDays = []
@@ -28,10 +29,10 @@ export class UserReservationsComponent implements OnInit {
     });
   }
 
-  searchReservations(name: string) {
+  searchReservations(name: string, email: string) {
     this.reservationsService.getAllDays()
       .subscribe(days => {
-        const reservationsFound = this.findReservationsByName(days, name)
+        const reservationsFound = this.findReservationsByName(days, name, email)
         this.allDays = reservationsFound;
         this.buttonPressed = true;
       });
@@ -42,12 +43,12 @@ export class UserReservationsComponent implements OnInit {
     this.allDays = []
   }
 
-  findReservationsByName(data: ReservationsResponse[], name: string) {
-    const reservations: any = [];
-
+  findReservationsByName(data: ReservationsResponse[], name: string, email: string) {
+    const reservations: PersoReservationsResponse[] = [];
+    debugger
     data.forEach((response) => {
       const date = response.date;
-      const reservationHours: any = [];
+      const reservationHours: PersoAvailableHour[] = [];
 
       response.availableHours.forEach((hour) => {
         const matchingReservations = hour.reservations.filter(
@@ -68,6 +69,7 @@ export class UserReservationsComponent implements OnInit {
           reservationHours: reservationHours,
         });
       }
+      console.log({reservationHours})
     });
 
     return reservations;

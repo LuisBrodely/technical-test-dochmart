@@ -42,7 +42,7 @@ export class UserFormComponent implements OnInit {
   }
 
   get currentUser(): ReservationBody {
-    let user = this.userForm.value as ReservationBody;
+    const user = this.userForm.value as ReservationBody;
     return user;
   }
 

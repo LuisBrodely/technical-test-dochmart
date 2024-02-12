@@ -45,3 +45,13 @@ export interface AddReservation {
   userReservation: Reservation;
   hourId: string;
 }
+
+export interface PersoAvailableHour {
+  time:         number;
+  reservations: Reservation[];
+}
+
+export interface PersoReservationsResponse {
+  date: Date;
+  reservationHours: PersoAvailableHour[]
+}
