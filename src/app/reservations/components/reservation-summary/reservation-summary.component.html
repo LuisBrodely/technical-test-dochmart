@@ -1,5 +1,22 @@
-<section class="pt-6 pb-12 px-8 mx-6 my-4 bg-white shadow-sm rounded-xl" *ngIf="reservationInfo">
-  <h3 class="font-bold text-3xl mb-1">Resumen de la Ultima Reservación</h3>
-
-  {{ reservationInfo | json }}
+<section class="pt-6 pb-8 px-8 mx-6 mt-2 bg-white shadow-sm rounded-xl w-[680px]" *ngIf="reservationInfo">
+  <h3 class="font-bold text-2xl mb-3">Resumen de la Ultima Reservación</h3>
+  <div class="flex gap-4 items-center">
+    <i class="fa-regular fa-circle-user text-5xl"></i>
+    <div>
+      <h3 class="font-semibold">{{ reservationInfo.name }}</h3>
+      <h3 class="text-[#3ECEAB]">{{ reservationInfo.email }}</h3>
+      <div class="flex gap-4 items-center text-[#525252] mt-1">
+        <div>
+          <i class="fa-regular fa-calendar mr-1"></i>
+          {{ reservationInfo.daySelected }} de Septiembre, 2024 a las {{ reservationInfo.hourSelected }}
+        </div>
+        <div class="w-[1px] h-[16px] bg-slate-300"></div>
+        <div>
+          <i class="fa-solid fa-phone mr-1"></i>
+          {{ reservationInfo.phone }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <user-reservations [name]="reservationInfo.name"></user-reservations>
 </section>

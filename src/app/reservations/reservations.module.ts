@@ -6,14 +6,16 @@ import { SchedulesComponent } from './components/schedules/schedules.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReservationSummaryComponent } from './components/reservation-summary/reservation-summary.component';
+import { UserReservationsComponent } from './components/user-reservations/user-reservations.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     CalendarComponent,
     SchedulesComponent,
+    ReservationSummaryComponent,
     UserFormComponent,
-    ReservationSummaryComponent
+    UserReservationsComponent
   ],
   imports: [
     CommonModule,

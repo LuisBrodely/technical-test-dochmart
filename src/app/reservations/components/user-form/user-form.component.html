@@ -1,13 +1,13 @@
 <section *ngIf="this.dayId"
-  class="pt-6 pb-12 px-8 my-4 bg-white shadow-sm rounded-xl flex gap-10 w-fit">
+  class="pt-6 pb-12 px-8 my-2 bg-white shadow-sm rounded-xl flex gap-10">
   <div class="mr-4 flex flex-col justify-center items-center">
     <h3 class="text-[#525252] text-lg">Fecha a Reservar</h3>
     <h2 class="text-9xl font-bold mb-2">{{ daySelected }}</h2>
-    <h2 class="text-xl font-bold mb-2">de Septiembre</h2>
+    <h2 class="text-xl font-bold mb-2 text-center">de Septiembre</h2>
     <h2 class="text-3xl font-bold text-[#3ECEAB]">{{ hourSelected }}</h2>
   </div>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()"
-    class="w-96">
+    class="w-80">
     <h3 class="text-2xl font-bold mb-2">Hacer una Reservación</h3>
     <div class="mb-4">
       <div class="mt-2">
@@ -36,3 +36,4 @@
     </button>
   </form>
 </section>
+

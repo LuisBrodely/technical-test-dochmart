@@ -15,7 +15,7 @@ export class ReservationsService {
   constructor(private http: HttpClient) { }
 
   getAllDays(): Observable<ReservationsResponse[]> {
-    return this.http.get<ReservationsResponse[]>(`${ this.apiUrl }/days`)
+    return this.http.get<ReservationsResponse[]>(`${this.apiUrl}/days`)
   }
 
   getHoursForDayId(dayId: string): Observable<AvailableHour[]> {

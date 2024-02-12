@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ReservationsService } from '../../services/reservations.service';
-import { AvailableHour, DaySelected } from '../../interfaces/reservations.interfaces';
+import { AvailableHour } from '../../interfaces/reservations.interfaces';
+import { convertTo12HourFormat } from '../../util/util';
 
 @Component({
   selector: 'reservations-schedules',
@@ -35,21 +36,15 @@ export class SchedulesComponent implements OnInit {
           __v: userReservation.__v
         });
       }
-      console.log('Se ha añadido correctamente')
     });
-  }
-
-  convertTo12HourFormat(hour24: number): string {
-    if (hour24 < 1 || hour24 > 24) {
-      return "Invalid hour";
-    }
-    const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
-    const period = hour24 < 12 ? "AM" : "PM";
-    return hour12 + ":00 " + period;
   }
 
   selectHour(hourId: string, hour: string) {
     this.reservationsService.hourSelected.emit({ hourId, hour })
+  }
+
+  convertTo12HourFormat(hour24: number): string {
+    return convertTo12HourFormat(hour24)
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationsResponse } from '../../interfaces/reservations.interfaces';
 import { ReservationsService } from '../../services/reservations.service';
+import { getDayOfMonth } from '../../util/util';
 
 @Component({
   selector: 'reservations-calendar',
@@ -19,18 +20,10 @@ export class CalendarComponent implements OnInit {
     this.reservationsService.getAllDays()
       .subscribe(days => {
         this.days = days
-        console.log({days})
       })
     this.reservationsService.reservationAdded.subscribe(() => {
       this.loadDays();
     });
-
-  }
-
-  getDayOfMonth(date: Date): number {
-    const dateObj = new Date(date);
-    const day = dateObj.getUTCDate();
-    return day
   }
 
   selectDay(dayId: string, dayNumber: number) {
@@ -45,7 +38,11 @@ export class CalendarComponent implements OnInit {
     this.reservationsService.getAllDays()
       .subscribe(days => {
         this.days = days;
-        console.log({days});
       });
   }
+
+  getDayOfMonth(date: Date): number {
+    return getDayOfMonth(date);
+  }
+
 }

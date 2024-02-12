@@ -3,6 +3,7 @@ export interface ReservationsResponse {
   date:           Date;
   availableHours: AvailableHour[];
   __v:            number;
+  reservationHours?: AvailableHour[]
 }
 
 export interface AvailableHour {

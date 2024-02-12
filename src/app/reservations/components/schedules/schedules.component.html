@@ -1,14 +1,14 @@
-<section class="pt-2">
-  <h3 class="font-bold text-3xl mb-1">
+<section class="pt-2 mt-2" *ngIf="daySelected">
+  <h3 class="font-bold text-2xl mb-1">
     Lista de Horarios
   </h3>
 
-  <h3 *ngIf="daySelected" class="text-lg mb-4 text-[#525252]">
+  <h3 class="text-base mb-4 text-[#525252]">
     Del {{ daySelected }} de Septiembre del 2024
   </h3>
 
   <ul class="grid grid-cols-3 gap-4">
-    <li *ngFor="let reservation of availableHours" class="px-4 py-4 bg-white w-72 rounded-xl shadow-sm">
+    <li *ngFor="let reservation of availableHours" class="px-4 py-3 bg-white w-72 rounded-xl shadow-sm">
       <div class="flex justify-between">
         <div class="flex gap-2 items-center">
           <div class="w-2 h-2 rounded-full bg-[#ff4a4ac4]"

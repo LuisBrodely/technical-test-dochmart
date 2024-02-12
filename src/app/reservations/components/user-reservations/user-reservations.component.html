@@ -1,0 +1,16 @@
+<button
+  (click)="searchReservations(name)"
+  class="rounded-md mt-3 w-fit bg-[#101010] px-4 py-2 text-sm font-semibold text-white shadow-sm"
+>
+  {{ toggleButton ? 'Ocultar' : 'Ver'}} mis mis reservaciones
+</button>
+
+<ul class="mt-4">
+  <li *ngFor="let day of allDays">
+    <h3 class="text-xl font-bold">Dia {{ getDayOfMonth(day.date) }} de Septiembre</h3>
+    <div *ngFor="let hour of day.reservationHours" class="flex gap-2 items-center mb-2">
+      <div class="w-2 h-2 rounded-full bg-[#3ECEAB]"></div>
+      <span class="text-[#525252]">Hora: {{ convertTo12HourFormat(hour.time) }}</span>
+    </div>
+  </li>
+</ul>

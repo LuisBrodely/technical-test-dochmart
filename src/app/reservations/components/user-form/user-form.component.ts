@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReservationsService } from '../../services/reservations.service';
-import { AddReservation, Reservation, ReservationBody } from '../../interfaces/reservations.interfaces';
+import { AddReservation, Reservation, ReservationBody, ReservationsResponse } from '../../interfaces/reservations.interfaces';
 
 @Component({
   selector: 'schedules-user-form',
@@ -51,10 +51,9 @@ export class UserFormComponent implements OnInit {
       this.reservationsService.addReservation(user)
         .subscribe({
           next: (userReservation: Reservation) => {
-            const userInfo = {...userReservation, hourSelected: this.hourSelected, daySelected: this.daySelected}
+            userReservation = {...userReservation, hourSelected: this.hourSelected, daySelected: this.daySelected}
 
             this.reservationsService.reservationAdded.emit({ userReservation, hourId: this.hourId } as AddReservation);
-            console.log(userReservation)
             this.hourSelected = undefined;
             this.hourId = undefined;
           },
