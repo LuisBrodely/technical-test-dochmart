@@ -1,14 +1,36 @@
-<h3 *ngIf="daySelected">Horarios del {{ daySelected }} de septiembre del 2024</h3>
+<section class="pt-2">
+  <h3 class="font-bold text-3xl mb-1">
+    Lista de Horarios
+  </h3>
 
-<ul>
-  <li *ngFor="let reservation of availableHours">
-    <button (click)="selectHour(reservation._id, convertTo12HourFormat(reservation.time))" class="p-2 bg-blue-200 mb-2">
-      Time: {{ convertTo12HourFormat(reservation.time) }}
-    </button>
-    <p *ngFor="let userInfo of reservation.reservations">
-      {{ userInfo.name }} - {{ userInfo.email }} - {{ userInfo.phone }}
-    </p>
-  </li>
-</ul>
+  <h3 *ngIf="daySelected" class="text-lg mb-4 text-[#525252]">
+    Del {{ daySelected }} de Septiembre del 2024
+  </h3>
 
-<schedules-user-form></schedules-user-form>
+  <ul class="grid grid-cols-3 gap-4">
+    <li *ngFor="let reservation of availableHours" class="px-4 py-4 bg-white w-72 rounded-xl shadow-sm">
+      <div class="flex justify-between">
+        <div class="flex gap-2 items-center">
+          <div class="w-2 h-2 rounded-full bg-[#ff4a4ac4]"
+            [ngClass]="{
+              'bg-[#ff4a4ac4]': reservation.reservations.length > 0,
+              'bg-[#31c17bba]': reservation.reservations.length == 0
+            }"></div>
+          <h4 class="font-medium text-sm">
+            {{ reservation.reservations.length > 0 ? 'Ocupado' : 'Disponible'}}
+          </h4>
+        </div>
+        <button *ngIf="reservation.reservations.length > 0">
+          <i class="fa-solid fa-user"></i>
+        </button>
+        <button *ngIf="reservation.reservations.length == 0"
+          (click)="selectHour(reservation._id, convertTo12HourFormat(reservation.time))">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <h3 class="font-bold text-2xl">
+        {{ convertTo12HourFormat(reservation.time) }}
+      </h3>
+    </li>
+  </ul>
+</section>

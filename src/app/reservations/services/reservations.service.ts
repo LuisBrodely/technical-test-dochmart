@@ -26,5 +26,4 @@ export class ReservationsService {
     return this.http.post<Reservation>(`${ this.apiUrl }/reservations/`, reservation)
   }
 
-
 }

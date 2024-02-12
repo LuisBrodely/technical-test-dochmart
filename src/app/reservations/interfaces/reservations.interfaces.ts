@@ -18,6 +18,8 @@ export interface Reservation {
   email: string;
   phone: string;
   __v:   number;
+  daySelected?: number;
+  hourSelected?: string;
 }
 
 export interface ReservationBody {
@@ -40,5 +42,5 @@ export interface HourSelected {
 
 export interface AddReservation {
   userReservation: Reservation;
-   hourId: string;
+  hourId: string;
 }

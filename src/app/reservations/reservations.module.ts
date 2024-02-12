@@ -5,13 +5,15 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { SchedulesComponent } from './components/schedules/schedules.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReservationSummaryComponent } from './components/reservation-summary/reservation-summary.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     CalendarComponent,
     SchedulesComponent,
-    UserFormComponent
+    UserFormComponent,
+    ReservationSummaryComponent
   ],
   imports: [
     CommonModule,

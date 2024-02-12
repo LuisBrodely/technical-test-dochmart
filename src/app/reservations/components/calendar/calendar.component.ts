@@ -9,6 +9,8 @@ import { ReservationsService } from '../../services/reservations.service';
 })
 export class CalendarComponent implements OnInit {
 
+  weekDays: string[] = ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
+
   public days: ReservationsResponse[] = []
 
   constructor(private reservationsService: ReservationsService) {}
@@ -22,7 +24,7 @@ export class CalendarComponent implements OnInit {
     this.reservationsService.reservationAdded.subscribe(() => {
       this.loadDays();
     });
-    
+
   }
 
   getDayOfMonth(date: Date): number {

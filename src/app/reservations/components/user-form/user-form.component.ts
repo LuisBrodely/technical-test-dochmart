@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReservationsService } from '../../services/reservations.service';
 import { AddReservation, Reservation, ReservationBody } from '../../interfaces/reservations.interfaces';
@@ -17,16 +17,21 @@ export class UserFormComponent implements OnInit {
 
   public dayId?: string;
   public hourId?: string;
+  public daySelected?: number;
+  public hourSelected?: string;
 
   constructor(private reservationsService: ReservationsService) {}
 
   ngOnInit(): void {
     this.reservationsService.hourSelected.subscribe(hourSelected => {
       this.hourId = hourSelected.hourId
+      this.hourSelected = hourSelected.hour
     })
     this.reservationsService.daySelected.subscribe(daySelected => {
       this.dayId = daySelected.dayId
+      this.daySelected = daySelected.dayNumber
     })
+
   }
 
   get currentUser(): ReservationBody {
@@ -35,15 +40,28 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.userForm.invalid) return;
+    if (this.userForm.invalid) {
+      alert('Faltan datos.')
+      return
+    };
 
     if (this.dayId && this.hourId) {
       const user = {...this.currentUser, hourId: this.hourId, dayId: this.dayId};
 
       this.reservationsService.addReservation(user)
-        .subscribe((userReservation: Reservation) => {
-          this.reservationsService.reservationAdded.emit({ userReservation, hourId: this.hourId } as AddReservation);
+        .subscribe({
+          next: (userReservation: Reservation) => {
+            const userInfo = {...userReservation, hourSelected: this.hourSelected, daySelected: this.daySelected}
+
+            this.reservationsService.reservationAdded.emit({ userReservation, hourId: this.hourId } as AddReservation);
+            console.log(userReservation)
+            this.hourSelected = undefined;
+            this.hourId = undefined;
+          },
+          error: (error) => alert(error.error.message)
         });
+    } else {
+      alert('Verifica dia y hora.')
     }
   }
 }

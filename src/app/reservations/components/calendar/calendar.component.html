@@ -1,11 +1,19 @@
-  <h3 class="mb-3 font-medium text-lg">Calendario - Septiembre 2024</h3>
-  <div class="grid grid-cols-7 gap-4 w-1/3">
-    <button *ngFor="let day of days; let i = index" class="p-2 border border-gray-200 rounded-md flex items-center justify-center cursor-pointer"
+<section class="pt-6 pb-12 px-8 mx-6 bg-white shadow-sm rounded-xl">
+  <h3 class="mb-1 text-3xl font-semibold">2024</h3>
+  <h2 class="mb-5 text-3xl font-semibold text-[#3ECEAB]">Septiembre</h2>
+  <div class="grid grid-cols-7">
+    <div *ngFor="let day of weekDays"
+      class="h-[55px] border border-gray-200 bg-[#101010] text-sm flex justify-center items-center">
+      <p class="font-bold text-white">{{ day }}</p>
+    </div>
+    <button *ngFor="let day of days; let i = index" (click)="selectDay(day._id, getDayOfMonth(day.date))"
+      class="h-14 w-14 border border-gray-200 cursor-pointer text-sm flex justify-center items-center">
+      <p class="text-white font-semibold w-8 h-8 rounded-full flex justify-center items-center"
         [ngClass]="{
-          'bg-red-200': isFullyBooked(i),
-          'bg-green-100': !isFullyBooked(i)
+          'bg-[#ff4a4ac4]': isFullyBooked(i),
+          'bg-[#31c17bba]': !isFullyBooked(i)
         }"
-        (click)="selectDay(day._id, getDayOfMonth(day.date))">
-      <p style="cursor: pointer;">{{ getDayOfMonth(day.date) }}</p>
+      >{{ getDayOfMonth(day.date) }}</p>
     </button>
   </div>
+</section>

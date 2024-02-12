@@ -1,5 +1,11 @@
-<section class="m-6">
-  <reservations-calendar></reservations-calendar>
+<main class="w-full h-screen">
+  <div class="flex">
+    <reservations-calendar class="w-3/8"></reservations-calendar>
+    <reservations-schedules class="w-5/8"></reservations-schedules>
+  </div>
 
-  <reservations-schedules></reservations-schedules>
-</section>
+  <div class="flex mt-3 mx-6">
+    <schedules-user-form></schedules-user-form>
+    <reservations-reservation-summary></reservations-reservation-summary>
+  </div>
+</main>
