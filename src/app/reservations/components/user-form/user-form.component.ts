@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReservationsService } from '../../services/reservations.service';
 import { AddReservation, Reservation, ReservationBody, ReservationsResponse } from '../../interfaces/reservations.interfaces';
 
@@ -10,9 +10,9 @@ import { AddReservation, Reservation, ReservationBody, ReservationsResponse } fr
 })
 export class UserFormComponent implements OnInit {
   public userForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(10)])
   });
 
   public dayId?: string;
