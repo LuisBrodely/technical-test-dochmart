@@ -13,7 +13,7 @@ export class UserReservationsComponent implements OnInit {
   @Input() public name: string = '';
 
   allDays: ReservationsResponse[] = [];
-  toggleButton: boolean = false;
+  buttonPressed : boolean = false;
 
   constructor(private reservationsService: ReservationsService) {}
 
@@ -23,23 +23,23 @@ export class UserReservationsComponent implements OnInit {
         this.searchReservations(userReservation.name)
       } else {
         this.allDays = []
-        this.toggleButton = false;
+        this.buttonPressed  = false;
       }
     });
   }
 
   searchReservations(name: string) {
-    if (this.toggleButton) {
-      this.allDays = []
-      this.toggleButton = false
-    } else {
-      this.reservationsService.getAllDays()
+    this.reservationsService.getAllDays()
       .subscribe(days => {
         const reservationsFound = this.findReservationsByName(days, name)
         this.allDays = reservationsFound;
-        this.toggleButton = true
+        this.buttonPressed = true;
       });
-    }
+  }
+
+  hideReservations() {
+    this.buttonPressed = false;
+    this.allDays = []
   }
 
   findReservationsByName(data: ReservationsResponse[], name: string) {

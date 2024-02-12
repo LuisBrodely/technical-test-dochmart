@@ -1,8 +1,15 @@
 <button
-  (click)="searchReservations(name)"
+  (click)="searchReservations(name);" *ngIf="!buttonPressed"
   class="rounded-md mt-3 w-fit bg-[#101010] px-4 py-2 text-sm font-semibold text-white shadow-sm"
 >
-  {{ toggleButton ? 'Ocultar' : 'Ver'}} mis mis reservaciones
+  Ver mis mis reservaciones
+</button>
+
+<button
+  (click)="hideReservations();" *ngIf="buttonPressed"
+  class="rounded-md mt-3 w-fit bg-[#101010] px-4 py-2 text-sm font-semibold text-white shadow-sm"
+>
+  Ocultar mis mis reservaciones
 </button>
 
 <ul class="mt-4">

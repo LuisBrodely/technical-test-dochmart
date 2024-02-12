@@ -28,8 +28,15 @@ export class UserFormComponent implements OnInit {
       this.hourSelected = hourSelected.hour
     })
     this.reservationsService.daySelected.subscribe(daySelected => {
-      this.dayId = daySelected.dayId
-      this.daySelected = daySelected.dayNumber
+      if (this.dayId !== daySelected.dayId) {
+        this.hourId = ''
+        this.hourSelected = ''
+        this.dayId = daySelected.dayId
+        this.daySelected = daySelected.dayNumber
+      } else {
+        this.dayId = daySelected.dayId
+        this.daySelected = daySelected.dayNumber
+      }
     })
 
   }
