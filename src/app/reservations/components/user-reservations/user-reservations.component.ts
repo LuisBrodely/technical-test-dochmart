@@ -52,7 +52,7 @@ export class UserReservationsComponent implements OnInit {
 
       response.availableHours.forEach((hour) => {
         const matchingReservations = hour.reservations.filter(
-          (reservation) => reservation.name === name
+          (reservation) => reservation.name === name && reservation.email === email
         );
 
         if (matchingReservations.length > 0) {
